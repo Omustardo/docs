@@ -1,5 +1,5 @@
-Installation instructions for <https://github.com/veandco/go-sdl2>
-------------------------------------------------------------------
+Windows installation instructions for <https://github.com/veandco/go-sdl2>
+--------------------------------------------------------------------------
 
 In short, you need to install mingw64 and make sure Go references the mingw64
 gcc rather than some other 32 bit one. You also need to unpack the SDL2 files
@@ -32,7 +32,7 @@ stop working in the future.
     attempting to debug "go get", make sure SDL2 is working by compiling a
     simple program:
 
-    ```
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     #include "SDL2/SDL.h" 
     #include <stdio.h>
     int main( int argc, char* args[] ) { 
@@ -48,7 +48,7 @@ stop working in the future.
         SDL_Quit(); 
         return 0;
     }
-    ```
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     The code above is from:
     <https://w3.cs.jmu.edu/bernstdh/Web/common/help/cpp_mingw-sdl-setup.php>  
@@ -75,16 +75,16 @@ stop working in the future.
     it in `C:\mingw\mingw64\lib\gcc\x86_64-w64-mingw32\6.2.0\include`  
     The program should now compile and you can run test.exe to see an SDL
     window. Congrats.
-	
-1.  Get Golang bindings for SDL.  
+
+5.  Get Golang bindings for SDL.  
     `go get -v github.com/veandco/go-sdl2/sdl`
 
-2.  Test Go SDL cd to the code you got in the previous step and try running
+6.  Test Go SDL cd to the code you got in the previous step and try running
     samples.  
     `cd "github.com\veandco\go-sdl2\examples"`  
     `go run render\render.go`
 
-3.  (optional) Install SDL mixer, image, and ttf
+7.  (optional) Install SDL mixer, image, and ttf
 
     Installation process is exactly the same. Get the tar.gz files:  
     http://www.libsdl.org/projects/SDL\_mixer/  
