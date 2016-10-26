@@ -1,6 +1,5 @@
-As with most things, I find reading a mix of demos and tutorials is best.
-
--   open.gl Amazing general resource. Good explanations.
+-   [open.gl](<https://open.gl/>)  
+    Amazing general resource. Good explanations.
 
 -   http://www.creativebloq.com/javascript/get-started-webgl-draw-square-7112981
     Intro to WebGL, but really good for general OpenGL, shaders, and more.
@@ -11,23 +10,26 @@ As with most things, I find reading a mix of demos and tutorials is best.
 -   http://stackoverflow.com/questions/21652546/what-is-the-role-of-glbindvertexarrays-vs-glbindbuffer-and-what-is-their-relatio  
     "A buffer object in OpenGL is a big blob of bits. Think of the "active"
     buffer as just a global variable, and there are a bunch of functions which
-    use the active buffer instead of using a parameter."  
-    GLuint array;  
-    // Generate a name for a new array.  
-    glGenVertexArrays(1, \&array);  
-    // Make the new array active, creating it if necessary.  
-    glBindVertexArray(array);  
-    // Make the buffer the active array buffer.  
-    glBindBuffer(GL\_ARRAY\_BUFFER, buffer);  
-    // Attach the active buffer to the active array,  
-    // as an array of vectors with 4 floats each.  
-    // Kind of like:  
-    // opengl-\>current\_vertex\_array-\>attributes[attr] = {  
-    // type = GL\_FLOAT,  
-    // size = 4,  
-    // data = opengl-\>current\_array\_buffer  
-    // } glVertexAttribPointer(attr, 4, GL\_FLOAT, GL\_FALSE, 0, 0);  
-    // Enable the vertex attribute glEnableVertexAttribArray(attr);
+    use the active buffer instead of using a parameter."
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GLuint array; 
+// Generate a name for a new array. 
+glGenVertexArrays(1, &array); 
+// Make the new array active, creating it if necessary. 
+glBindVertexArray(array);
+// Make the buffer the active array buffer. 
+glBindBuffer(GL_ARRAY_BUFFER, buffer); 
+// Attach the active buffer to the active array, 
+// as an array of vectors with 4 floats each. 
+// Kind of like: 
+// opengl->current_vertex_array->attributes[attr] = { 
+// type = GL_FLOAT, 
+// size = 4, 
+// data = opengl->current_array_buffer 
+// } glVertexAttribPointer(attr, 4, GL_FLOAT, GL_FALSE, 0, 0); 
+// Enable the vertex attribute glEnableVertexAttribArray(attr);
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -   http://stackoverflow.com/questions/19102180/how-does-gldrawarrays-know-what-to-draw  
     The call to glBindBuffer tells OpenGL to use vertexBufferObject whenever it
