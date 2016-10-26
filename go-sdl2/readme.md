@@ -56,9 +56,10 @@ stop working in the future.
 
     Now open a terminal and go to wherever you saved the file. Make sure gcc is
     the one you installed with mingw-64. If you're on a standard windows
-    terminal, run "`where gcc.exe`". If you've installed something like Git Bash
-    you can use linux-like commands, so: "`which gcc`". Either way, you should
-    get the correct path. For me, it says `C:\MinGW\mingw64\bin\gcc`  
+    terminal, run "`where gcc.exe`". If you've installed something like [Git
+    Bash](<https://git-for-windows.github.io/>) you can use linux-like commands,
+    so: "`which gcc`". Either way, you should get the correct path. For me, it
+    says `C:\MinGW\mingw64\bin\gcc`  
     Compile the program with: `gcc.exe -o test.exe test.c -lmingw32 -lSDL2main
     -lSDL2`  
     Now if it works and you can run the executable, you're all set. Continue to
