@@ -8,10 +8,10 @@ and put them in the proper locations so gcc can find them.
 Cygwin is an alternative, but according to some old SDL docs, it is expected to
 stop working in the future.
 
-1.  Install mingw-64  
+1.  Install mingw-64
     Make sure to set Architecture to x86\_64 but otherwise leave all of the
     settings the same. You can change the install path if you want. I set mine
-    to C:\\mingw  
+    to C:\\mingw
     Make sure to add the mingw bin to your PATH. For me, it's
     C:\\mingw\\mingw64\\bin
 
@@ -51,7 +51,7 @@ stop working in the future.
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     The code above is from:
-    <https://w3.cs.jmu.edu/bernstdh/Web/common/help/cpp_mingw-sdl-setup.php>  
+    <https://w3.cs.jmu.edu/bernstdh/Web/common/help/cpp_mingw-sdl-setup.php>
     Save it in a file called test.c
 
     Now open a terminal and go to wherever you saved the file. Make sure gcc is
@@ -59,43 +59,43 @@ stop working in the future.
     terminal, run "`where gcc.exe`". If you've installed something like [Git
     Bash](<https://git-for-windows.github.io/>) you can use linux-like commands,
     so: "`which gcc`". Either way, you should get the correct path. For me, it
-    says `C:\MinGW\mingw64\bin\gcc`  
+    says `C:\MinGW\mingw64\bin\gcc`
     Compile the program with: `gcc.exe -o test.exe test.c -lmingw32 -lSDL2main
-    -lSDL2`  
+    -lSDL2`
     Now if it works and you can run the executable, you're all set. Continue to
     the next step.
 
     If you're like me, you got an error about SDL2/SDL.h not existing. It seems
     the default paths for SDL2's include folder don't match mingw's. I found the
     correct location by running the compilation command with -v for verbose
-    logging: `gcc.exe -v -o test.exe test.c -lmingw32 -lSDL2main -lSDL2`  
+    logging: `gcc.exe -v -o test.exe test.c -lmingw32 -lSDL2main -lSDL2`
     It shows where gcc looks for includes, which is where we need to put the
     SDL2 files. So, go back to `SDL2-2.0.4\x86_64-w64-mingw32` and
-    `C:\mingw\mingw64` folders from step 3.  
+    `C:\mingw\mingw64` folders from step 3.
     Copy the SDL2 folder from `SDL2-2.0.4\x86_64-w64-mingw32\include` and paste
-    it in `C:\mingw\mingw64\lib\gcc\x86_64-w64-mingw32\6.2.0\include`  
+    it in `C:\mingw\mingw64\lib\gcc\x86_64-w64-mingw32\6.2.0\include`
     The program should now compile and you can run test.exe to see an SDL
     window. Congrats.
 
-5.  Get Golang bindings for SDL.  
+5.  Get Golang bindings for SDL.
     `go get -v github.com/veandco/go-sdl2/sdl`
 
 6.  Test Go SDL cd to the code you got in the previous step and try running
-    samples.  
-    `cd "github.com\veandco\go-sdl2\examples"`  
+    samples.
+    `cd "github.com\veandco\go-sdl2\examples"`
     `go run render\render.go`
 
 7.  (optional) Install SDL mixer, image, and ttf
 
-    Installation process is exactly the same. Get the tar.gz files:  
-    http://www.libsdl.org/projects/SDL\_mixer/  
-    http://www.libsdl.org/projects/SDL\_image/  
+    Installation process is exactly the same. Get the tar.gz files:
+    http://www.libsdl.org/projects/SDL\_mixer/
+    http://www.libsdl.org/projects/SDL\_image/
     http://www.libsdl.org/projects/SDL\_ttf/
 
     Unpack them into `C:\mingw\mingw64` and copy files from the include folder
     into `C:\mingw\mingw64\lib\gcc\x86_64-w64-mingw32\6.2.0\include`
 
-    Then:  
-    `go get -v github.com/veandco/go-sdl2/sdl_mixer`  
-    `go get -v github.com/veandco/go-sdl2/sdl_image`  
+    Then:
+    `go get -v github.com/veandco/go-sdl2/sdl_mixer`
+    `go get -v github.com/veandco/go-sdl2/sdl_image`
     `go get -v github.com/veandco/go-sdl2/sdl_ttf`
