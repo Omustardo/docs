@@ -125,20 +125,56 @@ to your Go source dir. For me, it’s C:\\workspace\\Go\\src
 
 ### Protoc
 
-Install protoc
+Install protoc: https://github.com/google/protobuf/releases/tag/v3.0.0
 
-Install protoc for golang
+Releases are at the bottom of the page. I downloaded the win32 version and extracted just the executable.
+The result was: `C:\Program Files (x86)\protoc\protoc.exe`
 
 Make sure to add the location of the protoc binary to your PATH.
 
-Normally you compile .proto files with `protoc --go_out=. <target>` but this
-gets annoying really quickly. An option is to add a small bash script to do it.
-On windows you could make a file called `gopro.bat` and put `protoc --go_out=.
-%1` into it. Then you can run `gopro.bat foo.proto` as long as the batch file is
-in PATH.
+Install the golang protoc plugin: `go get -u github.com/golang/protobuf/protoc-gen-go`
 
-It may be possible to avoid all of this and have automatic proto compilation in
-Intellij.
+You can compile .proto files with `protoc --go_out=. <target>` which puts the resulting
+ .pb.go file in the same directory as you're in.
+
+Note that if you have multiple protos which depend on each other, you need to 
+use protoc from `$GOROOT`. Alternatively, set `go_package` inside the protos
+to where others will be importing it from e.g. `github.com/myorg/myrepo/mypackage`.
+
+### gRPC
+
+http://www.grpc.io/docs/quickstart/go.html
+
+gRPC requires having already installed protoc, so follow the steps above if you haven't yet.
+Then install gRPC:
+
+`go get google.golang.org/grpc`
+
+Make sure it works by building the example in `$GOPATH/src/google.golang.org/grpc/examples`
+
+```
+cd $GOPATH/src/google.golang.org/grpc/examples/helloworld
+rm helloworld/helloworld.pb.go
+protoc -I helloworld/ helloworld/helloworld.proto --go_out=plugins=grpc:helloworld
+```
+Alternatively, if you start in the same directory as the proto file:
+```
+protoc helloworld.proto --go_out=plugins=grpc:.
+```
+In two separate terminals, run:
+
+`go run greeter_server/main.go`
+
+`go run greeter_client/main.go`
+
+If things go smoothly, you will see the "Greeting: Hello world" in the client side output.
+
+Note the strange syntax in `--go_out=plugins=grpc:helloworld`. This is because `protoc` is a general purpose
+proto compiler, and it needs to call a separate program (they call it a plugin) in order to compile protos.
+In this case, it calls `protoc-gen-go`, which is a binary installed to `$GOBIN`. Now, `protoc-gen-go` also needs
+flags passed to it but they can't be passed directly to `protoc`, so they're passed within the `--go_out` flag.
+The final colon separates the sub-flags from the argument to `--go_out`.
+ https://github.com/golang/protobuf/issues/239
 
 ### Notepad++
 
