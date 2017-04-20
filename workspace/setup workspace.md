@@ -19,17 +19,15 @@ C compiler is mingw64's gcc
 <https://desktop.github.com/>
 
 Github Desktop is not required, but makes working with Github more pleasant. It
-also installs Git Bash, which is very handy. Effectively emulates bash on
-Windows, and gives the ability to right-click open a terminal from any folder.
-TODO: [@omustardo] The right click option didn’t seem to show up in the default
-installation? “When installing Git for Windows the context menu options are not
-'on' by default. You will have to select them during the install.” Alternate:
-get it with Git SCM here https://git-for-windows.github.io/
+also installs Git Bash, which is very handy. 
 
 Follow basic installation, and log in with your Github account. Run the program
 and go into settings. Change the default shell to Git Bash. Change the default
 clone path to: `C:\workspace\go\src\github.com\omustardo` with your username
 instead of `omustardo`
+
+Also install https://git-for-windows.github.io/ to get bash, and the ability to
+right-click open a terminal from any folder.
 
 **MinGW-w64**
 -------------
@@ -43,13 +41,16 @@ Run the installer. For architecture, choose `x86_64`. You can leave it as the
 default, but I recommend changing the installation path to `C:\mingw` to avoid
 the long default path name.
 
-TODO: [@omustardo] is this really needed? Does git bash install these by
-default?
+Add mingw binaries to `PATH`. When I did this the default placement was: `C:\Program
+Files\mingw-w64\x86_64-6.2.0-posix-seh-rt_v5-rev1\mingw64\bin` but if you
+followed my advice in the MinGW installation, it's: `C:\mingw\mingw64\bin`
 
 **Install Golang**
 ------------------
 
-TODO: [@omustardo] : Link/basic install instructions
+https://golang.org/doc/install
+
+Install using the MSI installer for Windows.
 
 Set `GOPATH` and `GOROOT`. `GOROOT` is where compiler/tools from the Go
 installation should go. `GOPATH` is for all other code, including what you
@@ -57,24 +58,14 @@ write. I use `GOPATH=C:\workspace\go` and `GOROOT=C:\go`
 Also set `GOBIN=C:\workspace\go\bin` and add the same file path to your
 environmental variable’s PATH.
 
-If you're following this document in order, MinGW is set up at this point. Let's
-set it up so you can use Go libraries that use C code. This requires making sure
-the Go tool can find mingw's gcc. You can see that Go's `C` compiler is `gcc` by
-default, by running `go env`. This is correct, but it won't work as is. You can
-try it yourself by running `gcc`. It probably says something about program not
-found, unless you already have another `gcc` installed on your system.
+You can run `go env` to see what Go environmental variables are set to. This
+is very handy for debugging any issues you run into.
 
-To make `gcc` work, you need to make sure `gcc` is in `PATH`. When I did this,
-the default placement is: `C:\Program
-Files\mingw-w64\x86_64-6.2.0-posix-seh-rt_v5-rev1\mingw64\bin` but if you
-followed my advice in the MinGW installation, it's: `C:\mingw\mingw64\bin`
-
-TODO: Install useful Go tools: goimport, govet, ... ?
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Install useful Go tools:
+```
 go get golang.org/x/tools/cmd/goimports
 go get github.com/golang/lint/golint
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```
 
 **Make sure everything works**
 ------------------------------
@@ -89,6 +80,13 @@ go get github.com/golang/lint/golint
 
 A spinning cube should appear. This demo depends on C code, so if it works then
 you did everything right.
+
+**Gogland**
+-----------
+
+<https://www.jetbrains.com/go/>
+
+Gogland is an alternate to IntelliJ, and recommended if you only use Golang.
 
 **IntelliJ**
 ------------
